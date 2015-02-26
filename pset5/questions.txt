@@ -1,0 +1,37 @@
+0.  GIF: 256 colors, JPEG 16 million colors, PNG: 16 million colors, 
+    BMP 16 million colors
+1.  GIF and PNG support animation.
+2.  Lossy compression uses partial data discarding to compress images, it does
+    not encode all the data. Lossless compression encodes all the data upon 
+    compression. Lossy is not an exact representation of teh original, Lossless is.
+3.  JPEG format is lossy compressed.
+4.  FAT systems erase files by 1)modifying the file names first character to 
+    signal that the file has been deleted and that the directory entry can 
+    be recycled; 2) The system moves all of the files FAT clusters to the hard 
+    drives list of free clusters. Actual file data is never touched.
+5.  HD can be sanitized by using a tool that completely ovewrites the sectors 
+    of the disk with zero filled blocks.
+6.  stdint.h is a header file containing typedefs for exact width integer types. 
+7.  The point of using uint8_t, uint32_t, int32_t, and uint16_t in a program is
+    to make the code more readable and remind the programmer how many bits are in
+    each data type.
+8.  BYTE is 1 BYTE, DWORD is 4 BYTES, LONG is 4 BYTES, and WORD is 2 BYTES.
+9.  First 2 BYTES of any BMP file in ASCII is 'BM'. You can see this while examining
+    the hex dump of a file in xxd. Represents the files type.
+10. bfSize is the file size in bytes of the BMP file. biSize is the size in bytes of 
+    the BITMAPFILEHEADER.
+11. If bitHeight is negative, the BMP starts at the upper left corner and works its
+    way down.
+12. biBitCount specifies the BMP's color depth.
+13. fopen will return NULL if the file is not successfully opened. This could occur
+    if the file does not exist.
+14. The third argument to fread is always 1 becuase we are essetially reading one 
+    structs worth of data at a time. So for the BITMAPFILEHEADER, we are reading 
+    a chunk of data of just the right size to meaningfully fit into the 
+    struct called BITMAPFILEHEADER. And so on for the other structs defined in bmp.h.
+15. copy.c:70 assigns 3 to padding if bi.biWidth is 3 becuase it is trying to make sure
+    each line is a multiple of 4. Since it is 3 pixels, with each pixel being 3 bytes,
+    That would make 9 pixels. The next multiple of 4 is 12, so you need 3 bytes.
+16. fseek moves to a specific location in the file.
+17. SEEK_CUR represents the current location in the file for the fseek function.
+18. Milo Banana dun it.

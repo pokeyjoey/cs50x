@@ -1,0 +1,35 @@
+0.  Pneumonoultramicroscopicsilicovolcanoconiosis is a lung disease and the longest word n the 
+    English language published in a dictionary.
+1.  getrusage returns resource usage statistics for the calling process.
+2.  There are 16 members to a struct rusage.
+3.  We pass the structs before and after by reference so we are sure we are 
+    comparing the correct thngs.
+4.  We use fgetc to read each character one at a time so that we may examine
+    each character and make a determination if we care to consider it.
+    We check to see if each character is alphabetic, if so we add it to the
+    word array. we ignore strings that are longer than 45 characters, and ignore
+    words with numbers; in each case we read through the whole string with a 
+    while loop. We only increment the index counter for reading characters if 
+    we have read an alpha character. We drop to the last else statment if we
+    have completed reading a word from the text file completly into the word array.
+    At this point we run check to see if the word is misspelled by comparing it
+    to words in the dictionary loaded into memory.
+5.  Using fgetc to read each character you do no need to know the format of the 
+    characters to be read beforehand. fscanf you must provide a format that may 
+    possbily not match teh format of the character you are reading. You could possibly then
+    read words that are over 45 characters or that have digits in them.
+6.  The parameters to check and load are const so that the words and dictionaries
+    cannot be modified within the functions.
+7.  speller has been implemented using a has table using seperate chaining to prevent collisons.
+    Each word of the dictionary is run through a hashfunction which outputs an index in the 
+    hashtable. At that particular index a linked list is constructed of structs of nodes 
+    that contain words that match the hash value, and a pointer to the next node in the list.
+8.  The first time I ran the code it was many times slower.
+9.  To improve the performance of the code, I increased the number of buckets in the array
+    where potential linked lists could be stored. I deduced that as the number of buckets
+    increased, the length of each potential linked list would decrease. This would have the 
+    effect of lowering the number of nodes to traverse to locate the word if it existed.
+    And since each word maps to its potential hash, only one bucket needs to be searched.
+10. The only potential bottleneck would be the time to search a list. Since words from the 
+    dictionaries are inserted at the head of each list, insertion is very fast. But finding the
+    word could be O(n) if the word to be matched is the last node in the linked list.
